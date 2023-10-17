@@ -12,7 +12,7 @@ using testAppDynamicSun.Domain;
 namespace testAppDynamicSun.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231010093240__initial")]
+    [Migration("20231017101135__initial")]
     partial class _initial
     {
         /// <inheritdoc />
@@ -229,11 +229,11 @@ namespace testAppDynamicSun.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CloudBase")
-                        .HasColumnType("int");
+                    b.Property<string>("CloudBase")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Cloudiness")
-                        .HasColumnType("int");
+                    b.Property<string>("Cloudiness")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Conditions")
                         .HasColumnType("nvarchar(max)");
@@ -241,50 +241,33 @@ namespace testAppDynamicSun.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Humidity")
-                        .HasColumnType("float");
+                    b.Property<string>("Humidity")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Pressure")
-                        .HasColumnType("int");
+                    b.Property<string>("Pressure")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Td")
-                        .HasColumnType("float");
+                    b.Property<string>("Td")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Temperature")
-                        .HasColumnType("float");
+                    b.Property<string>("Temperature")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Time")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Visibility")
-                        .HasColumnType("int");
+                    b.Property<string>("Visibility")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WindDirection")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WindSpeed")
-                        .HasColumnType("int");
+                    b.Property<string>("WindSpeed")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("WeatherValues");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("716c2e99-6f6c-4472-81a5-43c56e11637c"),
-                            CloudBase = 0,
-                            Cloudiness = 0,
-                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Humidity = 0.0,
-                            Pressure = 0,
-                            Td = 0.0,
-                            Temperature = 0.0,
-                            Time = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Visibility = 0,
-                            WindDirection = "winddirection test",
-                            WindSpeed = 0
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

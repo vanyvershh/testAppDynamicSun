@@ -56,16 +56,16 @@ namespace testAppDynamicSun.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Time = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Temperature = table.Column<double>(type: "float", nullable: false),
-                    Humidity = table.Column<double>(type: "float", nullable: false),
-                    Td = table.Column<double>(type: "float", nullable: false),
-                    Pressure = table.Column<int>(type: "int", nullable: false),
+                    Time = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Temperature = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Humidity = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Td = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Pressure = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WindDirection = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WindSpeed = table.Column<int>(type: "int", nullable: false),
-                    Cloudiness = table.Column<int>(type: "int", nullable: false),
-                    CloudBase = table.Column<int>(type: "int", nullable: false),
-                    Visibility = table.Column<int>(type: "int", nullable: false),
+                    WindSpeed = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cloudiness = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CloudBase = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Visibility = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Conditions = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -178,11 +178,6 @@ namespace testAppDynamicSun.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.InsertData(
-                table: "WeatherValues",
-                columns: new[] { "Id", "CloudBase", "Cloudiness", "Conditions", "Date", "Humidity", "Pressure", "Td", "Temperature", "Time", "Visibility", "WindDirection", "WindSpeed" },
-                values: new object[] { new Guid("716c2e99-6f6c-4472-81a5-43c56e11637c"), 0, 0, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0.0, 0, 0.0, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "winddirection test", 0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
