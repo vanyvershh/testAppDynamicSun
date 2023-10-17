@@ -1,0 +1,96 @@
+﻿@using testAppDynamicSun.Domain
+@model IQueryable<testAppDynamicSun.Domain.WeatherValue>
+@{
+    ViewData["Title"] = "Просмотр архивов погодных условий в городе Москве";
+}
+
+<div class="text-center">
+    <h1 class="display-6">Просмотр архивов погодных условий в городе Москве</h1>
+</div>
+
+<div class="text-center">
+    <div align="left" >
+        @using (Html.BeginForm("WeatherView", "Home", FormMethod.Post))
+        {
+            <div>
+                Выбрать данные за месяц
+                <input type="month" name="month" />
+                <input type="submit" value="выбрать" />
+            </div>
+        }
+    </div>
+    <div align="left" style="margin-left:30px;">
+        <label style="color:grey">
+            или
+        </label>
+    </div>
+    <div align="left">
+        @using (Html.BeginForm("WeatherView", "Home", FormMethod.Post))
+        {
+            <div>
+                Выбрать данные за год
+                <input type="month" name="year" />
+                <input type="submit" value="выбрать" />
+            </div>
+        }
+    </div>
+
+    <div>
+    <h3>
+            @ViewData["Title1"]
+    </h3>
+        <style type="text/css">
+            TABLE {
+                border-collapse: collapse; /* Убираем двойные линии между ячейками */
+            }
+
+            TD, TH {
+                padding: 3px; /* Поля вокруг содержимого таблицы */
+                border: 1px solid black; /* Параметры рамки */
+            }
+
+            TH {
+                background: #b0e0e6; /* Цвет фона */
+            }
+        </style>
+
+    <table rules="cols" bordercolor=" black" border="2">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Температура</th>
+                <th>Влажность</th>
+                <th>Td</th>
+                <th>Давление</th>
+                <th>Направление</th>
+                <th>Скорость</th>
+                <th>Облачность</th>
+                <th>Граница</th>
+                <th>Видимость</th>
+                <th>Явления</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (WeatherValue weatherValue in Model)
+            {
+                <tr>
+                    <td> @weatherValue.Date.ToShortDateString() </td>
+                    <td> @weatherValue.Time </td>
+                    <td> @weatherValue.Temperature </td>
+                    <td> @weatherValue.Humidity </td>
+                    <td> @weatherValue.Td </td>
+                    <td> @weatherValue.Pressure </td>
+                    <td> @weatherValue.WindDirection </td>
+                    <td> @weatherValue.WindSpeed </td>
+                    <td> @weatherValue.Cloudiness </td>
+                    <td> @weatherValue.CloudBase </td>
+                    <td> @weatherValue.Visibility </td>
+                    <td> @weatherValue.Conditions </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
